@@ -1,9 +1,20 @@
+import json
+
 import psycopg2
+
+with open('config.json', 'r') as cfg:
+  data = json.load(cfg)
+
+BDD      = data["BDD_PGSQL"]
+USER     = data["USER_PGSQL"]
+PASSWORD = data["PSW_PGSQL"]
+HOST     = data["HOST_PGSQL"]
 
 #Etablir la connection:
 conn = psycopg2.connect(
-   database="bdd", user='postgres', password='psswrd!', host='127.0.0.1', port= '5432'
+   database=BDD, user=USER, password=PASSWORD, host=HOST, port= PORT
 )
+
 #Creation du curseur pour requeter:
 cursor = conn.cursor()
 
